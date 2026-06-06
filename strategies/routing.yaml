@@ -1,0 +1,25 @@
+routing:
+  strategy: weighted-failover
+  providers:
+    - name: qwen
+      priority: 1
+      weight: 70
+      health_check:
+        endpoint: /health
+        interval: 30s
+        timeout: 5s
+        unhealthy_threshold: 3
+    - name: deepseek
+      priority: 2
+      weight: 30
+      health_check:
+        endpoint: /health
+        interval: 30s
+        timeout: 5s
+        unhealthy_threshold: 3
+
+failover:
+  enabled: true
+  auto_switch: true
+  cool_down_period: 60s
+  retry_count: 2

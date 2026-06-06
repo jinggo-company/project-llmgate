@@ -1,0 +1,17 @@
+stages:
+  - validate
+  - deploy
+
+validate-compose:
+  stage: validate
+  script:
+    - docker compose config
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+verify-deployment:
+  stage: deploy
+  script:
+    - bash scripts/verify-deployment.sh
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'

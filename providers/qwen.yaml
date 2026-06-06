@@ -1,0 +1,18 @@
+provider: qwen
+name: "通义千问"
+base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+api_key_env: QWEN_API_KEY
+models:
+  - name: qwen-turbo
+    input_cost_per_1k: 0.002
+    output_cost_per_1k: 0.006
+  - name: qwen-plus
+    input_cost_per_1k: 0.004
+    output_cost_per_1k: 0.012
+  - name: qwen-max
+    input_cost_per_1k: 0.040
+    output_cost_per_1k: 0.120
+health_check:
+  endpoint: /models
+  timeout: 5s
+  interval: 30s

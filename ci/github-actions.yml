@@ -1,0 +1,17 @@
+name: LLMGate CI
+
+on:
+  push:
+    branches: [main, feat/**]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate docker-compose
+        run: docker compose config
+      - name: Run deploy verification
+        run: bash scripts/verify-deployment.sh

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>LLMGate 成本看板</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; margin: 40px; background: #f5f5f5; }
+    .dashboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card h3 { margin: 0 0 10px; color: #333; }
+    .metric { font-size: 32px; font-weight: bold; color: #1a73e8; }
+    .unit { font-size: 14px; color: #666; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #eee; }
+    th { background: #f8f9fa; }
+  </style>
+</head>
+<body>
+  <h1>LLMGate 成本看板</h1>
+  <div class="dashboard">
+    <div class="card">
+      <h3>今日花费</h3>
+      <div class="metric" id="today-cost">¥0.00</div>
+    </div>
+    <div class="card">
+      <h3>本月花费</h3>
+      <div class="metric" id="month-cost">¥0.00</div>
+    </div>
+    <div class="card">
+      <h3>Token 用量</h3>
+      <div class="metric" id="token-count">0</div>
+      <span class="unit">tokens</span>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>各模型花费</h3>
+    <table>
+      <thead><tr><th>模型</th><th>Input Tokens</th><th>Output Tokens</th><th>花费</th></tr></thead>
+      <tbody id="model-costs"></tbody>
+    </table>
+  </div>
+  <script>
+    // 示例数据，实际应从 API 获取
+    document.getElementById('today-cost').textContent = '¥12.50';
+    document.getElementById('month-cost').textContent = '¥256.80';
+    document.getElementById('token-count').textContent = '1,234,567';
+  </script>
+</body>
+</html>
